@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { BRANCHES } from './data/branches'
 import { ARRIVAL_WINDOWS, DISHES, ROAST_OPTIONS, SAMBAR_OPTIONS, SERVICES } from './data/dishes'
 import Grain from './components/Grain'
+import IntroFilm from './components/IntroFilm'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import DishIndex from './components/DishIndex'
@@ -11,6 +12,7 @@ import TrayDrawer from './components/TrayDrawer'
 import Footer from './components/Footer'
 
 export default function App() {
+  const [introDone, setIntroDone] = useState(false)
   const [branchId, setBranchId] = useState('velgatoor')
   const [dishId, setDishId] = useState('dosa')
   const [roast, setRoast] = useState(ROAST_OPTIONS[0])
@@ -87,6 +89,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-cotton text-iron">
+      {introDone ? null : <IntroFilm onEnter={() => setIntroDone(true)} />}
       <Grain />
       <Header
         branchId={branchId}
